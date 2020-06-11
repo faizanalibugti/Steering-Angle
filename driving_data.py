@@ -9,7 +9,7 @@ train_batch_pointer = 0
 val_batch_pointer = 0
 
 #read data.txt
-with open("data/data.txt") as f:
+with open("driving_dataset/data.txt") as f:
     for line in f:
         xs.append("driving_dataset/" + line.split()[0])
         #the paper by Nvidia uses the inverse of the turning radius,
