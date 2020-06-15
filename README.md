@@ -11,3 +11,5 @@ Line 20 is:
     monitor = {"top": 0, "left": 0, "width": 640, "height": 480}
 
 This line means the part of captured screen is the top left whose resolution is 640 x 480
+
+Tip: It is recommended to place screen capture window on the bottom right of the screen.
