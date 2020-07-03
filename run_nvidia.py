@@ -19,17 +19,6 @@ tf.app.flags.DEFINE_string(
     'steer_image', './steering_wheel_image.jpg',
     """Steering wheel image to show corresponding steering wheel angle.""")
 
-# Check TensorFlow Version
-assert LooseVersion(tf.__version__) >= LooseVersion('1.0'), 'Please use TensorFlow version 1.0 or newer.  You are using {}'.format(tf.__version__)
-print('TensorFlow Version: {}'.format(tf.__version__))
-
-# Check for a GPU
-if not tf.test.gpu_device_name():
-    warnings.warn('No GPU found. Please use a GPU to inference on your neural network.')
-else:
-    print('Default GPU Device: {}'.format(tf.test.gpu_device_name()))
-
-
 if __name__ == '__main__':
     img = cv2.imread(FLAGS.steer_image, 0)
     rows, cols = img.shape
@@ -61,7 +50,6 @@ if __name__ == '__main__':
                     screen = numpy.flip(screen[:, :, :3], 2)
                     #screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
                     
-                    print("fps: {}".format(1 / (time.time() - last_time)))
                     image = scipy.misc.imresize(screen, [66, 200]) / 255.0
 
                     steering = sess.run(
@@ -76,6 +64,8 @@ if __name__ == '__main__':
 
                     print("Predicted steering angle: " +
                           str(degrees) + " degrees")
+
+                    print("fps: {}".format(1 / (time.time() - last_time)))
 
                     cv2.imshow("Neural Network Input", image)
 
